@@ -193,7 +193,7 @@ button {
   background-color: var(--color-win);
 }
 
-.win a {
+.win button {
   color: var(--color-win);
 }
 
@@ -201,6 +201,6 @@ button {
   background-color: #f5785f;
 }
 
-.lose a {
+.lose button {
   color: var(--color-lose);
 }

@@ -4,7 +4,7 @@ class Game {
         // missed: used to track the number of missed guesses by the player. The initial value is 0, since no guesses have been made at the start of the game.
         this.missed = 0;
         // phrases: an array of five Phrase objects to use with the game. A phrase should only include letters and spaces— no numbers, punctuation or other special characters.
-        this.phrases = ['how are you', 'what is that'];
+        this.phrases = ['', 'get off your high horse', 'he who laughs last laughs longest', 'out of sight out of mind', 'curiosity killed the cat', 'swinging for the fences'];
         // activePhrase: This is the Phrase object that’s currently in play. The initial value is null. Within the startGame() method, this property will be set to the Phrase object returned from a call to the getRandomPhrase() method.
         this.activePhrase = null;
     }
@@ -43,7 +43,6 @@ class Game {
     handleInteraction(selectedKey) {
         // If the phrase includes the guessed letter, add the chosen CSS class to the selected letter's keyboard button, call the showMatchedLetter() method on the phrase, and then call the checkForWin() method. If the player has won the game, also call the gameOver() method.
         if (this.activePhrase.checkLetter(selectedKey.textContent).length) {
-            console.log('match');
             // Disable the selected letter’s onscreen keyboard button.
             selectedKey.classList.add('chosen');
             this.activePhrase.showMatchedLetter(selectedKey.textContent);
@@ -52,7 +51,6 @@ class Game {
             
         // If the phrase does not include the guessed letter, add the wrong CSS class to the selected letter's keyboard button and call the removeLife() method.
         } else {
-            console.log('no match');
             selectedKey.classList.add('wrong');
             this.removeLife();
         }
@@ -91,10 +89,19 @@ class Game {
         document.querySelector('#overlay').classList.remove('hide');
 
         // Gameover DOM element
-        const selectH1 = document.querySelector('#game-over-message');
+        const overlay = document.querySelector('#overlay');
 
-        // Update the end game screen with the appropriate win/loss message
-        (bool) ? selectH1.textContent = 'YOU WIN!': selectH1.textContent = 'YOU LOSE.  Please try again.';
+        // Reset overlay's classes
+        overlay.classList.remove('start', 'win', 'lose');
+
+        // Change starting overlay based on win or loss
+        if (bool) {
+            overlay.querySelector('#game-over-message').textContent = 'YOU WIN!';
+            overlay.classList.add('win');
+        } else {
+            overlay.querySelector('#game-over-message').textContent = 'YOU LOSE.  Please try again.';
+            overlay.classList.add('lose');
+        }
     }
 }
 
