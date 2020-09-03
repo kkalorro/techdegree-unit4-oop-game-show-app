@@ -11,6 +11,23 @@ class Game {
 
     // startGame(): hides the start screen overlay, calls the getRandomPhrase() method, and sets the activePhrase property with the chosen phrase. It also adds that phrase to the board by calling the addPhraseToDisplay() method on the active Phrase object.
     startGame() {
+        // Reset misses
+        this.missed = 0;
+
+        // Phrase list DOM element
+        document.querySelector('#phrase > ul').innerHTML = '';
+
+        // Enable all of the onscreen keyboard buttons and update each to use the key CSS class, and not use the chosen or wrong CSS classes.
+        document.querySelectorAll('.key').forEach(key => key.classList.remove('chosen', 'wrong'));
+
+        // Reset all of the heart images (i.e. the player's lives) in the scoreboard at the bottom of the gameboard to display the liveHeart.png image.
+        // document.querySelector('#scoreboard').firstElementChild.children.forEach(heart => {
+        for (let heart of document.querySelector('#scoreboard').firstElementChild.children) {
+            heart.classList.add('tries');
+            heart.firstElementChild.src = 'images/liveHeart.png';
+        };
+
+        // Reset phrase list
         document.querySelector('#overlay').classList.add('hide');
         this.activePhrase = new Phrase(this.getRandomPhrase());
         this.activePhrase.addPhraseToDisplay();
@@ -24,9 +41,6 @@ class Game {
 
     // handleInteraction(): this method controls most of the game logic. It checks to see if the button clicked by the player matches a letter in the phrase, and then directs the game based on a correct or incorrect guess. This method should:
     handleInteraction(selectedKey) {
-        // Placeholder for selected letter
-        // const selectedKey = document.querySelectorAll('.key')[8];
-
         // If the phrase includes the guessed letter, add the chosen CSS class to the selected letter's keyboard button, call the showMatchedLetter() method on the phrase, and then call the checkForWin() method. If the player has won the game, also call the gameOver() method.
         if (this.activePhrase.checkLetter(selectedKey.textContent).length) {
             console.log('match');
