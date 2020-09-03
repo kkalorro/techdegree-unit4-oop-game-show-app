@@ -15,7 +15,8 @@
             // Create a list element
             const li = document.createElement('li');
             // Give space and non-space characters appropriate classes
-            (char === ' ') ? li.classList.add('space') : li.classList.add('hide', 'letter', char);
+            // (char === ' ') ? li.classList.add('space') : li.classList.add('hide', 'letter', char);
+            (char === ' ') ? li.classList.add('space') : li.classList.add('letter', char);
             // This should be refactored out to prevent cheating
             li.textContent = char;
             // Append to DOM phrase
@@ -24,21 +25,22 @@
     }
 
     // Checks if chosen letter is in the phrase
-    checkletter() {
+    checkLetter(targetLetter) {
         // PLACEHOLDER: Selected letter
-        const selectedLetter = 'o';
+        // const selectedLetter = 'o';
 
         // Array.from() learned from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from
         // Discovered by: https://stackoverflow.com/questions/32765157/filter-or-map-nodelists-in-es6
         // Returns matches
-        return Array.from(this.lettersDOM).filter(match => match.textContent === selectedLetter);
+        // return Array.from(this.lettersDOM).filter(match => match.textContent === selectedLetter);
+        return Array.from(this.lettersDOM).filter(match => match.textContent === targetLetter);
     }
         
     // Reveals matched letter(s) on the board
-    showMatchedLetter() {
+    showMatchedLetter(targetLetter) {
         // Go through matching letters then swap hide class with show
-        this.checkletter().forEach(letter => {
-            letter.classList.remove('hide');
+        this.checkLetter(targetLetter).forEach(letter => {
+            // letter.classList.remove('hide');
             letter.classList.add('show');
         });
     }
