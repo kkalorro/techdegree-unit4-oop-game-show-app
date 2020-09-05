@@ -29,7 +29,7 @@
         // Array.from() learned from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from
         return Array.from(this.lettersDOM).filter(match => match.textContent === targetLetter);
     }
-        
+    
     // Reveals matched letter(s) on the board
     showMatchedLetter(targetLetter) {
         // Go through matching letters then swap hide class with show
