@@ -30,9 +30,17 @@ body {
   height: 100vh;
 }
 
-li, ol, ul {
+/* li, ol, ul { */
+li, ol {
   padding: 0;
   display: inline-block;
+}
+
+ul {
+  padding: 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
 }
 
 h2 {
@@ -93,6 +101,10 @@ button {
 
 
 /* Phrase */
+
+.word {
+
+}
 
 .letter {
   font-size: small;
