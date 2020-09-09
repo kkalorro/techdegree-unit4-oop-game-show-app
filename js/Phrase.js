@@ -16,7 +16,7 @@
             const li = document.createElement('li');
             // Give space and non-space characters appropriate classes
             (char === ' ') ? li.classList.add('space') : li.classList.add('letter', char);
-            // This should be refactored out to prevent cheating
+            // This should probably be refactored around removing this to prevent cheating
             li.textContent = char;
             // Append to DOM phrase
             document.querySelector('#phrase > ul').appendChild(li);
